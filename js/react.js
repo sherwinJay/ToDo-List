@@ -135,11 +135,6 @@ class App extends React.Component{
 		  localStorage.setItem(key, JSON.stringify(this.state[key]));
 		}
 	  }
-	
-	  updateInput(key, value) {
-		// update react state
-		this.setState({ [key]: value });
-	  }
 	render(){
 		console.log(this.state.toDoItems);
 		return(
@@ -163,7 +158,7 @@ class App extends React.Component{
 	addItem(title, id){
 		const toDo = {
 			title: title,
-			id: id
+			id: 1 + Math.random(),
 		}
 		this.setState((state) => ({
 			toDoItems: state.toDoItems.concat([toDo])
@@ -194,8 +189,6 @@ class App extends React.Component{
 		);
 
 		this.setState({ toDoItems: toDoItem });
-//	localStorage.setItem("toDoItems", JSON.stringify(toDoItem));
-	//	this.props.onDelete(this.props.id);
 	}
 }
 
