@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>React Practice</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+	<header>
+		<div id="main">
+		</div>
+		<script src="https://fb.me/react-0.14.3.min.js"></script>
+		<script src="https://fb.me/react-dom-0.14.3.min.js"></script>
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>﻿
+		<!--<script type="text/babel" src="js/react.js"></script>-->
+		<script type="text/babel" >
+
+
+			class Comments extends React.Component{
+				render(){
+					return(
+					<div className="comment">
+					<p className="name"> {this.props.author} </p>
+					<p className="body"> {this.props.body} </p>
+					</div>
+					);
+				}
+			}			
+
+			
+			class CommentForm extends React.Component{
+				render(){
+					return(
+						<form onSubmit={this._handleSubmit.bind(this)}>
+							<div className="formFields">
+								<input placeholder="Name" ref={(input) => this._author = input} required />
+								<textarea placeholder="Comments" ref={(textarea) => this._body = textarea} required></textarea>
+							</div>
+							<div className="formAction"> 
+								<button type="submit">Post Comment</button>
+							</div>
+						</form>
+						
+					);
+
+
+				}
+
+				_handleSubmit(e){
+					e.preventDefault();
+
+					let author = this._author;
+					let body = this._body;
+
+					this.props.addComment(author.value, body.value);
+				}
+
+			}
+
+			class TestBox extends React.Component{
+				
+				constructor() {
+					super();
+
+					this.state = {
+						showComments: false,
+						comments: [ {id : 1, author: 'Wyane', body: 'hello world'} , 
+											  {id : 2, author: 'Bron', body: 'great shot!'} ]
+					};
+
+				}
+
+				render() {
+
+					const comments = this._getComments();
+					let commentNodes;
+					let buttonText = "Show Comments";
+
+					if( this.state.showComments ){
+						buttonText = "Hide Comments";
+					
+						commentNodes = <div className="comment-list">{comments}</div>
+					}
+
+					return(
+						<div className="comment-box">
+							<CommentForm addComment={this._addComment.bind(this)} />
+							<h2>Join the Discussion</h2>
+							<button onClick={this._handleClick.bind(this)}>{buttonText}</button>
+							<h4>{this._getCommentTitle(comments.length)}</h4>
+							{commentNodes}
+
+						</div>
+					);
+				}
+				_getComments(){
+						
+					return this.state.comments.map( (comment) => {
+						return( 
+						<Comments 
+						author={comment.author} 
+						body={comment.body} 
+						key={comment.id} />
+
+						);
+					});
+				}
+
+				_getCommentTitle(commentNum){
+					if(commentNum === 0){
+						return 'No Comments';
+					}else if(commentNum === 1){
+						return '1 Comment';
+					}else{
+					return `${commentNum} Comments`;
+					}
+				} 
+
+				_handleClick(){
+
+					this.setState({
+						showComments: !this.state.showComments
+					});
+
+				}
+				
+				_addComment(author, body){
+					const comment = {
+						id: this.state.comments.length + 1,
+						author,
+						body
+					};
+					this.setState({ comments: this.state.comments.concat([comment]) });
+				}
+			}
+
+			ReactDOM.render(<TestBox />, document.getElementById("main"));
+
+		</script>
+	</header>
+</body>
+</html>
