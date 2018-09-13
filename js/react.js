@@ -10,7 +10,7 @@ class Form extends React.Component{
 
 	render(){
 		return(
-			<form onSubmit={this.handleSubmit}>
+			<form className="commentForm"onSubmit={this.handleSubmit}>
 				<input type="text"
 								value={this.state.toDoItem}
 								onChange={this.addToDo} required/>
