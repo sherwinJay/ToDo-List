@@ -119,7 +119,7 @@ align-items: center;
 	background: url(../images/delete.png) no-repeat;
 	background-size: contain;
 	width: 20px;
-	heihgt: 20px;
+	height: 20px;
 }
 .deleteBtn:hover{
 background: url(../images/deleteHover.png) no-repeat;
