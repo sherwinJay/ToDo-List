@@ -89,46 +89,31 @@ input[type=text], input[type=submit] , textarea{
 input[type=text], textarea{
 	width: 630px;
 }
-textarea{
-	height: 60px;
-}
 .tc{
 	text-align: center;
 }
 #main{
 	width: 700px;
-	padding: 20px;
-	background-color: #fff;
+	background-color: #f9f9f9;
 	margin: 0 auto;
-}
-.commentWrapper{
-display: flex;
-    height: 100%;
-border-bottom: 1px #dedede solid;
-	padding: 10px 0;
-}
-.authorImage{
-align-items: center;
-	display: flex;
-	margin-right: 8px;
 }
 .comment-name{
 	font-weight: bold;
 }
-.deleteBtn{
-	background: url(../images/delete.png) no-repeat;
-	background-size: contain;
-	width: 20px;
-	height: 20px;
-}
-.deleteBtn:hover{
-background: url(../images/deleteHover.png) no-repeat;
-background-size: contain;
-}
 .commentForm{
 	padding: 10px 20px;
-	background-color: #9ecbd2;
-	margin: 15px 0;	
+	background-color: #18a093;
+	display: flex;
+}
+#main ul{
+	padding: 20px;
+}
+#main li{
+	margin-bottom: 10px;
+	background-color: #fff;
+	box-shadow: 1px 1px 2px #ccc;
+	padding:  5px 10px;
+	display: flex;
 }
 .comment{
 	padding: 15px 0;
