@@ -41,7 +41,7 @@ class ToDo extends React.Component{
 		return(
 			<div>
 			<div className="title">{this.props.title}</div>
-			<a href="#" onClick={this.handleDelete.bind(this)}  >Delete</a>
+			<a href="#" onClick={this.handleDelete.bind(this)} className="deleteBtn" >Delete</a>
 			</div>
 		)
 	}
