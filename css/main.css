@@ -124,3 +124,13 @@ input[type=text], textarea{
 	font-size: 14px !important;
 	color: #555;
 }
+.deleteBtn{
+background: url(../images/delete.png) no-repeat;
+    background-size: contain;
+    width: 25px;
+    height: 25px;
+}
+.deleteBtn:hover{
+background: url(../images/deleteHover.png) no-repeat;
+    background-size: contain;
+}
