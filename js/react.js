@@ -39,10 +39,12 @@ class Form extends React.Component{
 class ToDo extends React.Component{
 	render(){
 		return(
-			<div>
-			<div className="title">{this.props.title}</div>
-			<a href="#" onClick={this.handleDelete.bind(this)} className="deleteBtn" ></a>
-			</div>
+			<li className="listItem">
+				<div className="title">{this.props.title}</div>
+				<div className="btn">
+					<a href="#" onClick={this.handleDelete.bind(this)} className="deleteBtn" ></a>
+				</div>
+			</li>
 		)
 	}
 	handleDelete(e){
@@ -58,12 +60,12 @@ class ToDoLists extends React.Component{
 		return(
 			<ul>
 				{this.props.toDoItem.map(  (item) => 
-					<li>
+					
 					<ToDo title={item.title}
 								id={item.id}
 								onDelete={this.deleteCallBack.bind(this)}
 								/>
-					</li>
+					
 				)}
 			</ul>
 		);
