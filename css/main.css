@@ -83,15 +83,16 @@ ul, ol{
 input[type=text], input[type=submit]{
 	display: block !important;
 	margin: 8px 0;
-	padding: 25px;
+	padding: 18px;
 	border: none;
 }
 input[type=text]{
-	max-width: 630px;
+	width: 630px;
 	background-color: #0e857a;
+	margin-right: -20px;
 }
 input[type=submit]{
-	background: url(../images/submitBtn.png);
+	background: url(../images/submitBtn.png) no-repeat;
 }
 .tc{
 	text-align: center;
