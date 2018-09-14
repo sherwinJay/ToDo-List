@@ -68,7 +68,7 @@ h4{
 	font-weight: bold;
 }
 body {
-	background: #002147;
+	background: #333;
 	width: 100%;
 	height: 100%;
 	font-family: "PT Sans",'open_sansregular', Helvetica, sans-serif;
@@ -80,14 +80,18 @@ ul, ol{
 	list-style: none;
 }
 
-input[type=text], input[type=submit] , textarea{
+input[type=text], input[type=submit]{
 	display: block !important;
 	margin: 8px 0;
-	padding: 12px 15px;
-	border: #ccc 1px solid;
+	padding: 25px;
+	border: none;
 }
-input[type=text], textarea{
-	width: 630px;
+input[type=text]{
+	max-width: 630px;
+	background-color: #0e857a;
+}
+input[type=submit]{
+	background: url(../images/submitBtn.png);
 }
 .tc{
 	text-align: center;
@@ -108,12 +112,12 @@ input[type=text], textarea{
 #main ul{
 	padding: 20px;
 }
-#main li{
+.listItem{
+	display: flex;
 	margin-bottom: 10px;
 	background-color: #fff;
 	box-shadow: 1px 1px 2px #ccc;
-	padding:  5px 10px;
-	display: flex;
+	padding:  15px;
 }
 .comment{
 	padding: 15px 0;
@@ -133,4 +137,10 @@ background: url(../images/delete.png) no-repeat;
 .deleteBtn:hover{
 background: url(../images/deleteHover.png) no-repeat;
     background-size: contain;
+}
+.title{
+	flex-direction: start;
+}
+.btn{
+	flex-direction: end;
 }
