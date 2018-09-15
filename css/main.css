@@ -81,18 +81,19 @@ ul, ol{
 }
 
 input[type=text], input[type=submit]{
-	display: block !important;
 	margin: 8px 0;
-	padding: 18px;
 	border: none;
 }
 input[type=text]{
-	width: 630px;
+	width: 100%;
 	background-color: #0e857a;
 	margin-right: -20px;
+	padding: 18px;
 }
 input[type=submit]{
 	background: url(../images/submitBtn.png) no-repeat;
+	width: 50px;
+	height: 50px;
 }
 .tc{
 	text-align: center;
@@ -112,6 +113,7 @@ input[type=submit]{
 }
 #main ul{
 	padding: 20px;
+	min-height: 300px;
 }
 .listItem{
 	display: flex;
@@ -139,9 +141,7 @@ background: url(../images/delete.png) no-repeat;
 background: url(../images/deleteHover.png) no-repeat;
     background-size: contain;
 }
-.title{
-	flex-direction: start;
-}
 .btn{
-	flex-direction: end;
+	display: flex;
+	justify-content: flex-end;
 }
