@@ -40,7 +40,7 @@ class ToDo extends React.Component{
 	render(){
 		return(
 			<li className="listItem">
-				<div className="title">{this.props.title}</div>
+				{this.props.title}
 				<div className="btn">
 					<a href="#" onClick={this.handleDelete.bind(this)} className="deleteBtn" ></a>
 				</div>
