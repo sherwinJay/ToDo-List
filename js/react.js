@@ -14,7 +14,7 @@ class Form extends React.Component{
 				<input type="text"
 								value={this.state.toDoItem}
 								onChange={this.addToDo} required/>
-				<input type="Submit"/>
+				<input type="Submit" value="submit" />
 			</form>
 		);
 	}
