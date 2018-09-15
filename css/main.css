@@ -87,11 +87,13 @@ input[type=text], input[type=submit]{
 input[type=text]{
 	width: 100%;
 	background-color: #0e857a;
+	color: #fff;
 	margin-right: -20px;
 	padding: 18px;
 }
 input[type=submit]{
 	background: url(../images/submitBtn.png) no-repeat;
+	color: transparent;
 	width: 50px;
 	height: 50px;
 }
@@ -117,6 +119,7 @@ input[type=submit]{
 }
 .listItem{
 	display: flex;
+	justify-content: space-between;
 	margin-bottom: 10px;
 	background-color: #fff;
 	box-shadow: 1px 1px 2px #ccc;
@@ -140,8 +143,4 @@ background: url(../images/delete.png) no-repeat;
 .deleteBtn:hover{
 background: url(../images/deleteHover.png) no-repeat;
     background-size: contain;
-}
-.btn{
-	display: flex;
-	justify-content: flex-end;
 }
