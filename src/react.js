@@ -157,7 +157,7 @@ class App extends React.Component{
 			dd = today.getDate(),
 			mm = today.getMonth(), //January is 0!
 		 	yyyy = today.getFullYear();
-		today = dd + '/' + monthName[mm] + '/' + yyyy;
+		today = dd + '/' + monthName[mm];
 		if (dd < 10) {
 		dd = '0' + dd;
 		}
