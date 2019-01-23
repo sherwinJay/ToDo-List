@@ -93,7 +93,7 @@ class TodoListItem extends React.Component{
 					(
 						<li className="listItem" >{this.props.title} | 
 						<form><label><img src="images/calendar.png"/></label></form> {this.props.date} | 
-						<a href="#" onClick={this.onEdit}>Edit</a> | x`
+						<a href="#" onClick={this.onEdit}>Edit</a> |
 						<a href="#" onClick={this.onDelete}>Delete</a></li>
 					)
 				}
