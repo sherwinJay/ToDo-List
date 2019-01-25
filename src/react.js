@@ -77,8 +77,8 @@ class TodoListItem extends React.Component{
 		}
 		taskMenu(e){
 			e.preventDefault();
-			
-			this.setState({showTaskMenu: !showTaskMenu});
+			console.log("works");
+			//this.setState({showTaskMenu: !showTaskMenu});
 		}
 	render(){
 		/*******************
