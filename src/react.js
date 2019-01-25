@@ -82,7 +82,7 @@ class TodoListItem extends React.Component{
 		}
 	render(){
 		/*******************
-		FIX THIS LINES LATER
+		FIX THIS LINES LATER | MAKE TASK MENU A CHILD COMPONENT??? 
 		********************/
 		let showTask;
 		console.log(this.state.toDoItem);
