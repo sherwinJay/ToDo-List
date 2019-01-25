@@ -39,14 +39,15 @@ class TodoListItem extends React.Component{
 		super(props);
 		this.state = {
 			editTask: false,
-			toDoItem : ""
+			toDoItem : "",
+			showTaskMenu: false
 		}
 		//this.handleEdit = this.handleEdit.bind(this);
 		this.onEdit = this.onEdit.bind(this);
 		this.onDelete = this.onDelete.bind(this);
 		this.editList = this.editList.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-	
+		this.taskMenu = this.taskMenu.bind(this);
 	}
 
 	onDelete(e){
@@ -74,9 +75,26 @@ class TodoListItem extends React.Component{
 			e.preventDefault();
 			//alert(this.state.toDoItem);
 		}
-
+		taskMenu(e){
+			e.preventDefault();
+			
+			this.setState({showTaskMenu: !showTaskMenu});
+		}
 	render(){
+		/*******************
+		FIX THIS LINES LATER
+		********************/
+		let showTask;
 		console.log(this.state.toDoItem);
+		
+		if(this.state.showTaskMenu === false){
+			showTask = { display: "none"}
+		}else{
+		showTask = { display: "block"}
+		}
+		/*******************
+		FIX THIS LINES LATER
+		********************/
 		return(
 			<div>
 				{	this.state.editTask ? 
@@ -93,8 +111,13 @@ class TodoListItem extends React.Component{
 					(
 						<li className="listItem" >{this.props.title} | 
 						<form><label><img src="images/calendar.png"/></label></form> {this.props.date} | 
-						<a href="#" onClick={this.onEdit}>Edit</a> |
-						<a href="#" onClick={this.onDelete}>Delete</a></li>
+						<a href="#" className="taskMenu" onclick={this.taskMenu}>
+							<ul>
+							<li><a href="#" onClick={this.onEdit}>Edit</a> </li>
+							<li><a href="#" onClick={this.onDelete}>Delete</a></li>
+							</ul>
+						</a>
+						</li>
 					)
 				}
 			</div>
