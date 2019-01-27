@@ -87,10 +87,10 @@ class TodoListItem extends React.Component{
 		let showTask;
 		console.log(this.state.toDoItem);
 		
-		if(this.state.showTaskMenu === false){
-			showTask = { display: "none"}
+		if(this.state.showTaskMenu){
+			showTask = { display: "block"}
 		}else{
-		showTask = { display: "block"}
+		showTask = { display: "false"}
 		}
 		/*******************
 		FIX THIS LINES LATER
@@ -111,12 +111,12 @@ class TodoListItem extends React.Component{
 					(
 						<li className="listItem" >{this.props.title} | 
 						<form><label><img src="images/calendar.png"/></label></form> {this.props.date} | 
-						<a href="#" onClick={this.taskMenu}>Menu
-							<div style={showTask}>
+						<a href="#" onClick={this.taskMenu}>Menu	
+						</a>
+						<div style={showTask}>
 							<a href="#" onClick={this.onEdit}>Edit</a>
 							<a href="#" onClick={this.onDelete}>Delete</a>
-							</div>
-						</a>
+						</div>
 						</li>
 					)
 				}
