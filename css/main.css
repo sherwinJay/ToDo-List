@@ -97,4 +97,17 @@ ul, ol{
 	display: flex;
 	border-bottom: #ccc 1px solid;
 	padding: 10px 0;
+	position: relative;
+}
+.showTaskButton{
+	background: url(images/tripleDot.png) no-repeat;
+	height: 24px;
+	width: 24px;
+}
+.taskMenu{
+	background-color: #fff;
+	border: 1px #ddd solid;
+	padding: 10px;
+	position: absolute;
+	z-index: 2;
 }
