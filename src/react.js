@@ -90,7 +90,7 @@ class TodoListItem extends React.Component{
 		if(this.state.showTaskMenu){
 			showTask = { display: "block"}
 		}else{
-		showTask = { display: "false"}
+		showTask = { display: "none"}
 		}
 		/*******************
 		FIX THIS LINES LATER
