@@ -78,7 +78,8 @@ class TodoListItem extends React.Component{
 		taskMenu(e){
 			e.preventDefault();
 			//console.log("works");
-			this.setState({showTaskMenu: !this.state.showTaskMenu});
+			this.props.activeList(this.props.idx);
+			//this.setState({showTaskMenu: !this.state.showTaskMenu});
 		}
 	render(){
 		/*******************
@@ -112,7 +113,7 @@ class TodoListItem extends React.Component{
 						<li className="listItem" >{this.props.title} | 
 							<form><label><img src="images/calendar.png"/></label></form> {this.props.date} | 
 							<div>
-								<a href="#" onClick={this.props.activeList} className="showTaskButton">
+								<a href="#" onClick={this.taskMenu} className="showTaskButton">
 								</a>
 								<div style={showTask}  className="taskMenu">
 									<a href="#" onClick={this.props.delete}>Edit</a>
@@ -153,8 +154,9 @@ class TodoList extends React.Component{
 			{
 				this.props.todoList.map( (item, idx) => 
 				<TodoListItem 
+				idx={idx}
 				activeList={this.activeList}
-				active={idx === this.state.active}
+				active={idx === this.state.activeIdx}
 				title={item.title} 
 				date={item.date} 
 				deleteItem={this.deleteCallBack.bind(this)} 
