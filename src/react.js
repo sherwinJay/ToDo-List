@@ -87,7 +87,7 @@ class TodoListItem extends React.Component{
 		let showTask;
 		console.log(this.state.toDoItem);
 		
-		if(this.state.showTaskMenu){
+		if(this.props.active){
 			showTask = { display: "block"}
 		}else{
 		showTask = { display: "none"}
@@ -112,7 +112,7 @@ class TodoListItem extends React.Component{
 						<li className="listItem" >{this.props.title} | 
 							<form><label><img src="images/calendar.png"/></label></form> {this.props.date} | 
 							<div>
-								<a href="#" onClick={this.taskMenu} className="showTaskButton">
+								<a href="#" onClick={this.props.activeList} className="showTaskButton">
 								</a>
 								<div style={showTask}  className="taskMenu">
 									<a href="#" onClick={this.props.delete}>Edit</a>
@@ -129,6 +129,17 @@ class TodoListItem extends React.Component{
 
 }
 class TodoList extends React.Component{
+	constructor(props){
+		super(props);
+		this.state={
+			activeIdx: -1
+
+		}
+		this.activeList = this.activeList.bind(this);
+	}
+	activeList(idx){
+		this.setState({activeIdx: idx});
+	}
 	deleteCallBack(item){
 		this.props.deleteItem(item);
 	}	
@@ -141,7 +152,14 @@ class TodoList extends React.Component{
 		<ul>
 			{
 				this.props.todoList.map( (item, idx) => 
-				<TodoListItem title={item.title} date={item.date} deleteItem={this.deleteCallBack.bind(this)} editItem={this.editCallBack.bind(this)} oldId={item.id} />	
+				<TodoListItem 
+				activeList={this.activeList}
+				active={idx === this.state.active}
+				title={item.title} 
+				date={item.date} 
+				deleteItem={this.deleteCallBack.bind(this)} 
+				editItem={this.editCallBack.bind(this)} 
+				oldId={item.id} />	
 				//<li>{item.title}</li>
 				)
 			}
