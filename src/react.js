@@ -51,7 +51,7 @@ class TodoListItem extends React.Component{
 		this.state = {
 			editTask: false,
 			toDoItem : "",
-			showTaskMenu: false
+			showTaskMenu: true
 		}
 		//this.handleEdit = this.handleEdit.bind(this);
 		this.onEdit = this.onEdit.bind(this);
@@ -69,7 +69,7 @@ class TodoListItem extends React.Component{
 		editList(e){
 			let {value} = e.target
 			this.setState({
-				toDoItem: value
+				toDoItem: value,
 			})
 		}
 		onEdit(e){
@@ -146,14 +146,12 @@ class TodoList extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={
-			activeIdx: -1
+			activeIdx: -1,
+			showTaskMenu: false
 
 		}
-		this.activeList = this.activeList.bind(this);
 	}
-	activeList(idx){
-		this.setState({activeIdx: idx});
-	}
+	
 	deleteCallBack(item){
 		this.props.deleteItem(item);
 	}	
@@ -168,7 +166,7 @@ class TodoList extends React.Component{
 				this.props.todoList.map( (item, idx) => 
 				<TodoListItem 
 				idx={idx}
-				activeList={this.activeList}
+				activeList={this.props.activeList}
 				active={idx === this.state.activeIdx}
 				title={item.title} 
 				date={item.date} 
@@ -188,12 +186,14 @@ class App extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			toDoItems : []
+			toDoItems : [],
+			showTaskMenu: false,
+			activeIdx: -1
 		}
 		this.handleEdit = this.handleEdit.bind(this);
 		this.handleDelete = this.handleDelete.bind(this);
 		this.addToDo = this.addToDo.bind(this);
-	
+		this.activeList = this.activeList.bind(this);
 	}
 	componentDidMount(){
 			this.fetchComments();
@@ -240,7 +240,9 @@ class App extends React.Component{
 			todo => todo.id !==itemId
 		);
 
-		this.setState({toDoItems: toDoList});
+		this.setState({toDoItems: toDoList, 
+			      showTaskMenu: false
+			      });
 	}
 	handleEdit(title, oldId){
 		let list = [...this.state.toDoItems];
@@ -262,8 +264,15 @@ class App extends React.Component{
 			i === this.props.rowIdx ? "test" : row
 		})**/
 	//	console.log(this.state.toDoItems.title);
-		this.setState({toDoItems: list});
+		this.setState({toDoItems: list,
+			      showTaskMenu: false
+			      });
 		//console.log(listItem);
+	}
+	activeList(idx){
+		this.setState({activeIdx: idx,
+			      showTaskMenu: !this.state.showTaskMenu
+			      });
 	}
 	render(){
 		console.log(this.state.toDoItems);
@@ -276,7 +285,7 @@ class App extends React.Component{
 					</div>
 				</header>
 				<div className="container">
-					<TodoList  todoList={this.state.toDoItems} editItem={this.handleEdit} deleteItem={this.handleDelete}/>
+					<TodoList activeList={this.activeList}  todoList={this.state.toDoItems} editItem={this.handleEdit} deleteItem={this.handleDelete}/>
 				</div>
 			</div>
 		)
