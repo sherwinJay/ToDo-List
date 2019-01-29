@@ -69,8 +69,7 @@ class TodoListItem extends React.Component{
 		editList(e){
 			let {value} = e.target
 			this.setState({
-				toDoItem: value,
-				showTaskMenu: false
+				toDoItem: value
 			})
 		}
 		onEdit(e){
@@ -82,7 +81,8 @@ class TodoListItem extends React.Component{
 			this.props.editItem(this.state.toDoItem, this.props.oldId);
 			this.setState({
 				toDoItem: "",
-				editTask: false
+				editTask: false,
+				showTaskMenu: false
 			})
 					
 			e.preventDefault();
