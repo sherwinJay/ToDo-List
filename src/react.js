@@ -34,6 +34,17 @@ class AddListForm extends React.Component{
 
 }
 
+class Taskmenu extends React.Component{
+	render(){
+		return(
+			<div>
+			<a href="#" onClick={this.props.deleteBtn}>Edit</a>
+			<a href="#" onClick={this.props.editBtn}>Delete</a>
+			</div>
+		);
+	}
+}
+
 class TodoListItem extends React.Component{
 	constructor(props){
 		super(props);
@@ -117,8 +128,8 @@ class TodoListItem extends React.Component{
 								<a href="#" onClick={this.taskMenu} className="showTaskButton">
 								</a>
 								<div  style={showTask} className="taskMenu">
-									<a href="#" onClick={this.onDelete}>Edit</a>
-									<a href="#" onClick={this.editList}>Delete</a>
+									<Taskmenu deleteBtn={this.onDelete} editBtn={this.editList} />
+									
 								</div>
 							
 						</li>
