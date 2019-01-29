@@ -112,14 +112,14 @@ class TodoListItem extends React.Component{
 					(
 						<li className="listItem" >{this.props.title} | 
 							<form><label><img src="images/calendar.png"/></label></form> {this.props.date} | 
-							<div>
+							
 								<a href="#" onClick={this.taskMenu} className="showTaskButton">
 								</a>
-								<div  className="taskMenu">
+								<div  style={showTask} className="taskMenu">
 									<a href="#" onClick={this.props.delete}>Edit</a>
 									<a href="#" onClick={this.props.edit}>Delete</a>
 								</div>
-							</div>
+							
 						</li>
 						
 					)
