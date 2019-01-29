@@ -53,7 +53,7 @@ class TodoListItem extends React.Component{
 	onDelete(e){
 		e.preventDefault();
 		console.log(this.props.oldId);
-		//this.props.deleteItem(this.props.oldId);
+		this.props.deleteItem(this.props.oldId);
 		}
 		editList(e){
 			let {value} = e.target
