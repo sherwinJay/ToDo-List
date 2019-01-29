@@ -115,7 +115,7 @@ class TodoListItem extends React.Component{
 							<div>
 								<a href="#" onClick={this.taskMenu} className="showTaskButton">
 								</a>
-								<div style={showTask}  className="taskMenu">
+								<div  className="taskMenu">
 									<a href="#" onClick={this.props.delete}>Edit</a>
 									<a href="#" onClick={this.props.edit}>Delete</a>
 								</div>
