@@ -167,7 +167,7 @@ class TodoList extends React.Component{
 				<TodoListItem 
 				idx={idx}
 				activeList={this.props.activeList}
-				active={idx === this.state.activeIdx}
+				active={idx === this.props.activeIdx}
 				title={item.title} 
 				date={item.date} 
 				deleteItem={this.deleteCallBack.bind(this)} 
@@ -285,7 +285,7 @@ class App extends React.Component{
 					</div>
 				</header>
 				<div className="container">
-					<TodoList activeList={this.activeList}  todoList={this.state.toDoItems} editItem={this.handleEdit} deleteItem={this.handleDelete}/>
+					<TodoList activeIdx={this.state.activeIdx} activeList={this.activeList}  todoList={this.state.toDoItems} editItem={this.handleEdit} deleteItem={this.handleDelete}/>
 				</div>
 			</div>
 		)
