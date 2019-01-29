@@ -101,7 +101,7 @@ class TodoListItem extends React.Component{
 		let showTask;
 		console.log(this.state.toDoItem);
 		
-		if(this.props.active){
+		if(this.props.active && this.props.showTaskMenu){
 			showTask = { display: "block"}
 		}else{
 		showTask = { display: "none"}
@@ -165,6 +165,7 @@ class TodoList extends React.Component{
 			{
 				this.props.todoList.map( (item, idx) => 
 				<TodoListItem 
+				showTaskMenu={this.props.showTaskMenu}
 				idx={idx}
 				activeList={this.props.activeList}
 				active={idx === this.props.activeIdx}
@@ -285,7 +286,7 @@ class App extends React.Component{
 					</div>
 				</header>
 				<div className="container">
-					<TodoList activeIdx={this.state.activeIdx} activeList={this.activeList}  todoList={this.state.toDoItems} editItem={this.handleEdit} deleteItem={this.handleDelete}/>
+					<TodoList showTaskMenu={this.state.showTaskMenu} activeIdx={this.state.activeIdx} activeList={this.activeList}  todoList={this.state.toDoItems} editItem={this.handleEdit} deleteItem={this.handleDelete}/>
 				</div>
 			</div>
 		)
