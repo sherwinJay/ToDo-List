@@ -52,7 +52,8 @@ class TodoListItem extends React.Component{
 
 	onDelete(e){
 		e.preventDefault();
-		this.props.deleteItem(this.props.oldId);
+		console.log(this.props.oldId);
+		//this.props.deleteItem(this.props.oldId);
 		}
 		editList(e){
 			let {value} = e.target
@@ -116,8 +117,8 @@ class TodoListItem extends React.Component{
 								<a href="#" onClick={this.taskMenu} className="showTaskButton">
 								</a>
 								<div  style={showTask} className="taskMenu">
-									<a href="#" onClick={this.props.delete}>Edit</a>
-									<a href="#" onClick={this.props.edit}>Delete</a>
+									<a href="#" onClick={this.onDelete}>Edit</a>
+									<a href="#" onClick={this.editList}>Delete</a>
 								</div>
 							
 						</li>
