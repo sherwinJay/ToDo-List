@@ -101,7 +101,7 @@ ul, ol{
 	position: relative;
 }
 .btn{
-	diplay: flex;
+	display: flex;
 }
 .showTaskButton{
 	background: url(images/tripleDot.png) no-repeat;
