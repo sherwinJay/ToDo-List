@@ -11,7 +11,9 @@ class AddListForm extends React.Component{
 	render(){
 		return(
 			<form onSubmit={this.handleSubmit}>
-				<input type="text" value={this.state.toDoItem} onChange={this.addToDo}/>
+				<input type="text" 
+					value={this.state.toDoItem} 
+					onChange={this.addToDo}/>
 				<button>Submit</button>
 			</form>
 		);
@@ -50,8 +52,7 @@ class TodoListItem extends React.Component{
 		super(props);
 		this.state = {
 			editTask: false,
-			toDoItem : "",
-			showTaskMenu: true
+			toDoItem : ""
 		}
 		//this.handleEdit = this.handleEdit.bind(this);
 		this.onEdit = this.onEdit.bind(this);
@@ -81,18 +82,14 @@ class TodoListItem extends React.Component{
 			this.props.editItem(this.state.toDoItem, this.props.oldId);
 			this.setState({
 				toDoItem: "",
-				editTask: false,
-				showTaskMenu: false
+				editTask: false
 			})
 					
 			e.preventDefault();
-			//alert(this.state.toDoItem);
 		}
 		taskMenu(e){
 			e.preventDefault();
-			//console.log("works");
 			this.props.activeList(this.props.idx);
-			//this.setState({showTaskMenu: !this.state.showTaskMenu});
 		}
 	render(){
 		/*******************
@@ -115,7 +112,9 @@ class TodoListItem extends React.Component{
 					(
 						<li className="listItem" >
 							<form onSubmit={this.handleSubmit}>
-								<input type="text" value={this.state.toDoItem} onChange={this.editList}/>
+								<input type="text" 
+									value={this.state.toDoItem} 
+									onChange={this.editList}/>
 								<button>Submit</button>
 							</form> |  
 							<a href="#" onClick={this.onEdit}>Cancel</a>
@@ -129,7 +128,8 @@ class TodoListItem extends React.Component{
 								<a href="#" onClick={this.taskMenu} className="showTaskButton">
 								</a>
 								<div  style={showTask} className="taskMenu">
-									<Taskmenu deleteBtn={this.onDelete} editBtn={this.onEdit} />
+									<Taskmenu deleteBtn={this.onDelete} 
+										editBtn={this.onEdit} />
 									
 								</div>
 							
@@ -143,15 +143,6 @@ class TodoListItem extends React.Component{
 
 }
 class TodoList extends React.Component{
-	constructor(props){
-		super(props);
-		this.state={
-			activeIdx: -1,
-			showTaskMenu: false
-
-		}
-	}
-	
 	deleteCallBack(item){
 		this.props.deleteItem(item);
 	}	
@@ -261,10 +252,6 @@ class App extends React.Component{
 			}
 			return item;
 		});
-		/**toDoItem: this.state.toDoItem.map((row, i) => { 
-			i === this.props.rowIdx ? "test" : row
-		})**/
-	//	console.log(this.state.toDoItems.title);
 		this.setState({toDoItems: list,
 			      showTaskMenu: false
 			      });
@@ -282,11 +269,17 @@ class App extends React.Component{
 				<header className="mainHeader">
 					<div className="header">
 						<h1> ToDo App </h1>
-						<AddListForm addNew={this.addToDo}  />
+						<AddListForm 
+							addNew={this.addToDo}  />
 					</div>
 				</header>
 				<div className="container">
-					<TodoList showTaskMenu={this.state.showTaskMenu} activeIdx={this.state.activeIdx} activeList={this.activeList}  todoList={this.state.toDoItems} editItem={this.handleEdit} deleteItem={this.handleDelete}/>
+					<TodoList 
+						showTaskMenu={this.state.showTaskMenu} 
+						activeIdx={this.state.activeIdx} 
+						activeList={this.activeList}  todoList={this.state.toDoItems} 
+						editItem={this.handleEdit} 
+						deleteItem={this.handleDelete}/>
 				</div>
 			</div>
 		)
