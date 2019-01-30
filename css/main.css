@@ -100,6 +100,9 @@ ul, ol{
 	padding: 10px 0;
 	position: relative;
 }
+.btn{
+	diplay: flex;
+}
 .showTaskButton{
 	background: url(images/tripleDot.png) no-repeat;
 	height: 24px;
