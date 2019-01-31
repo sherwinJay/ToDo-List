@@ -117,8 +117,7 @@ class TodoListItem extends React.Component{
 								<input type="text" 
 									value={this.state.toDoItem} 
 									onChange={this.editList}/>
-								<button>Submit</button>
-							</form> |  
+							</form>
 							<a href="#" onClick={this.onEdit}>Cancel</a>
 						</li>
 					)
@@ -131,7 +130,7 @@ class TodoListItem extends React.Component{
 								<label>
 									<img src="images/calendar.png"/>
 								</label>
-								</form> {this.props.date} | 
+								</form> {this.props.date}
 							
 								<a href="#" onClick={this.taskMenu} className="showTaskButton">
 								</a>
