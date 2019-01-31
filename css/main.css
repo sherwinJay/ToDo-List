@@ -93,6 +93,11 @@ ul, ol{
 .mainHeader{
 	background-color: #002147;
 }
+.header{
+	padding: 20px 0;
+	display: flex;
+	justify-content: space-between;
+}
 .listItem{
 	display: flex;
 	justify-content: space-between;
@@ -107,6 +112,7 @@ ul, ol{
 	background: url(images/tripleDot.png) no-repeat;
 	height: 24px;
 	width: 24px;
+	margin-left: 10px;
 }
 .taskMenu{
 	background-color: #fff;
@@ -131,4 +137,7 @@ background: url(images/readNote.png) no-repeat left;
 }
 .deleteBtn{
 background: url(images/delete.png) no-repeat left;
+}
+.listItem{
+border: none;
 }
