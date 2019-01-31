@@ -40,8 +40,10 @@ class Taskmenu extends React.Component{
 	render(){
 		return(
 			<div>
-			<a href="#" onClick={this.props.editBtn}>Edit</a>
-			<a href="#" onClick={this.props.deleteBtn}>Delete</a>
+			<a href="#" className="editBtn" onClick={this.props.editBtn}>Edit</a>
+			<a href="#" className="addNoteBtn" >Add Note</a>
+			<a href="#" className="readBtn" >Read Note</a>
+			<a href="#" className="deleteBtn" onClick={this.props.deleteBtn}>Delete</a>
 			</div>
 		);
 	}
@@ -125,7 +127,11 @@ class TodoListItem extends React.Component{
 						<li className="listItem" >
 							<div className="title">{this.props.title}</div>
 							<div className="btn">
-							<form><label><img src="images/calendar.png"/></label></form> {this.props.date} | 
+							<form>
+								<label>
+									<img src="images/calendar.png"/>
+								</label>
+								</form> {this.props.date} | 
 							
 								<a href="#" onClick={this.taskMenu} className="showTaskButton">
 								</a>
