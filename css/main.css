@@ -114,5 +114,21 @@ ul, ol{
 	padding: 10px;
 	position: absolute;
 	z-index: 2;
-	top: 30px;
+	top: 38px;
+	right: 0;
+}
+.editBtn, .addNoteBtn, .readBtn, .deleteBtn{
+padding-left: 25px;
+}
+.editBtn{
+background: url(images/edit.png) no-repeat left;
+}
+.addNoteBtn{
+background: url(images/addNote.png) no-repeat left;
+}
+.readBtn{
+background: url(images/readNote.png) no-repeat left;
+}
+.deleteBtn{
+background: url(images/delete.png) no-repeat left;
 }
