@@ -40,10 +40,8 @@ class Taskmenu extends React.Component{
 	render(){
 		return(
 			<div>
-			<a href="#" className="editBtn" onClick={this.props.editBtn}>Edit</a>
-			<a href="#" className="addNoteBtn" >Add Note</a>
-			<a href="#" className="readBtn" >Read Note</a>
-			<a href="#" className="deleteBtn" onClick={this.props.deleteBtn}>Delete</a>
+			<a href="#" onClick={this.props.editBtn}><i className="far fa-edit"></i>Edit</a>
+			<a href="#" onClick={this.props.deleteBtn}>Delete</a>
 			</div>
 		);
 	}
@@ -54,7 +52,8 @@ class TodoListItem extends React.Component{
 		super(props);
 		this.state = {
 			editTask: false,
-			toDoItem : ""
+			toDoItem : "",
+			showTaskMenu: false
 		}
 		//this.handleEdit = this.handleEdit.bind(this);
 		this.onEdit = this.onEdit.bind(this);
@@ -68,6 +67,10 @@ class TodoListItem extends React.Component{
 		e.preventDefault();
 		console.log(this.props.oldId);
 		this.props.deleteItem(this.props.oldId);
+		this.setState({
+			showTaskMenu: false
+		});
+		
 		}
 		editList(e){
 			let {value} = e.target
@@ -77,14 +80,17 @@ class TodoListItem extends React.Component{
 		}
 		onEdit(e){
 			e.preventDefault();
-			this.setState({editTask: !this.state.editTask});
+			this.setState({editTask: !this.state.editTask,
+							showTaskMenu: false
+			});
 		}
 		handleSubmit(e){
 				
 			this.props.editItem(this.state.toDoItem, this.props.oldId);
 			this.setState({
 				toDoItem: "",
-				editTask: false
+				editTask: false,
+				showTaskMenu: false
 			})
 					
 			e.preventDefault();
@@ -92,6 +98,9 @@ class TodoListItem extends React.Component{
 		taskMenu(e){
 			e.preventDefault();
 			this.props.activeList(this.props.idx);
+			this.setState({
+				showTaskMenu: !this.state.showTaskMenu
+			});
 		}
 	render(){
 		/*******************
@@ -100,7 +109,8 @@ class TodoListItem extends React.Component{
 		let showTask;
 		console.log(this.state.toDoItem);
 		
-		if(this.props.active && this.props.showTaskMenu){
+		if(this.props.active && this.state.showTaskMenu
+		){
 			showTask = { display: "block"}
 		}else{
 		showTask = { display: "none"}
@@ -113,13 +123,18 @@ class TodoListItem extends React.Component{
 				{	this.state.editTask ? 
 					(
 						<li className="listItem" >
+							<div className="title">
 							<form onSubmit={this.handleSubmit}>
-								<input type="text"
-									placeholder={this.props.title}
+								<input type="text" 
 									value={this.state.toDoItem} 
-									onChange={this.editList}/>
+									onChange={this.editList}
+									placeholder={this.props.title}/>
+									
 							</form>
+							</div> 
+							<div className="btn">  
 							<a href="#" onClick={this.onEdit}>Cancel</a>
+							</div>
 						</li>
 					)
 					:
@@ -128,10 +143,8 @@ class TodoListItem extends React.Component{
 							<div className="title">{this.props.title}</div>
 							<div className="btn">
 							<form>
-								<label>
-									<img src="images/calendar.png"/>
-								</label>
-								</form> {this.props.date}
+								<label><img src="images/calendar.png"/></label>
+							</form> {this.props.date} 
 							
 								<a href="#" onClick={this.taskMenu} className="showTaskButton">
 								</a>
@@ -267,8 +280,7 @@ class App extends React.Component{
 		//console.log(listItem);
 	}
 	activeList(idx){
-		this.setState({activeIdx: idx,
-			      showTaskMenu: !this.state.showTaskMenu
+		this.setState({activeIdx: idx
 			      });
 	}
 	render(){
@@ -295,6 +307,4 @@ class App extends React.Component{
 	}
 }
 
-ReactDOM.render(<App  />, document.getElementById("main"), console.timeEnd("app"));	
-
-
+ReactDOM.render(<App  />, document.getElementById("main"), console.timeEnd("app"));
