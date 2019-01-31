@@ -114,7 +114,8 @@ class TodoListItem extends React.Component{
 					(
 						<li className="listItem" >
 							<form onSubmit={this.handleSubmit}>
-								<input type="text" 
+								<input type="text"
+									placeholder={this.props.title}
 									value={this.state.toDoItem} 
 									onChange={this.editList}/>
 							</form>
