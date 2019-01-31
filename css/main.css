@@ -118,7 +118,7 @@ ul, ol{
 	right: 0;
 }
 .editBtn, .addNoteBtn, .readBtn, .deleteBtn{
-padding: 10px 0 10px 30px;
+padding: 7px 0 10px 25px;
 }
 .editBtn{
 background: url(images/edit.png) no-repeat left;
