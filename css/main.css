@@ -101,7 +101,7 @@ ul, ol{
 .listItem{
 	display: flex;
 	justify-content: space-between;
-	border-bottom: #ccc 1px solid;
+	border-bottom: #eee 1px solid;
 	padding: 10px 0;
 	position: relative;
 }
