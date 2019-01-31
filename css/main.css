@@ -138,6 +138,6 @@ background: url(images/readNote.png) no-repeat left;
 .deleteBtn{
 background: url(images/delete.png) no-repeat left;
 }
-.listItem{
+.listItem input{
 border: none;
 }
