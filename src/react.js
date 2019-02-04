@@ -36,12 +36,96 @@ class AddListForm extends React.Component{
 
 }
 
-class Taskmenu extends React.Component{
+class TaskNote extends React.Component{
+	constructor(props){
+		super(props);
+		this.state={
+			hide: false,
+			writeNote: false,
+			taskNote: ""
+		}
+		this.addNote = this.addNote.bind(this);
+		this.inputNote = this.inputNote.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+	
+	addNote(e){
+		//const addNote = this.state.taskNote;
+
+		this.setState({writeNote: true});
+
+	}
+	handleSubmit(e){
+		this.props.handleTaskNote(this.state.taskNote, this.props.oldId);
+		
+		this.setState({
+				taskNote: "",
+				writeNote: false,
+		})
+		e.preventDefault();
+	}
+	inputNote(e){
+		let {value} = e.target
+		this.setState({
+			taskNote: value,
+		})
+	}
 	render(){
 		return(
+		<div className="taskNoteContainer">
+			
+			<div className="noteHeader">
+				<a href="#" onClick={this.addNote} title="Write Note" className="fas fa-pen"></a>
+				<a href="#"  onClick={this.props.showNoteBtn } className="fas fa-times" title="Close Tab"></a>
+			</div>
+			<div className="taskNote">
+				{this.state.writeNote ? 
+					(
+							<form onSubmit={this.handleSubmit}>
+								<textarea type="message" 
+									value={this.state.toDoItem} 
+									onChange={this.inputNote}
+									placeholder={this.props.taskNote}>{this.props.taskNote}</textarea>
+									<input type="submit" />
+									
+							</form>
+					)
+					:
+					(
+						<div onClick={this.addNote}>{this.props.taskNote}</div>
+						
+					)
+				}
+			</div>
+		</div>
+		);
+	}
+} 
+
+class Taskmenu extends React.Component{
+	constructor(props){
+		super(props);
+		this.state={
+			showTaskNote: false
+		}
+	}
+	render(){
+
+		return(
 			<div>
-			<a href="#" onClick={this.props.editBtn}><i className="far fa-edit"></i>Edit</a>
-			<a href="#" onClick={this.props.deleteBtn}>Delete</a>
+			<a href="#" onClick={this.props.editBtn}>
+				<i className="far fa-edit"></i>
+				<span className="icon">Edit</span>
+			</a>
+			<a href="#" onClick={this.props.showNoteBtn} >
+				<i className="far fa-sticky-note"></i>
+				<span className="icon">Add Note</span>
+			</a>
+			
+			<a href="#" onClick={this.props.deleteBtn}>
+				<i className="far fa-trash-alt"></i>
+				<span className="icon">Delete</span>
+			</a>
 			</div>
 		);
 	}
@@ -53,7 +137,8 @@ class TodoListItem extends React.Component{
 		this.state = {
 			editTask: false,
 			toDoItem : "",
-			showTaskMenu: false
+			showTaskMenu: false,
+			showTaskNote: false
 		}
 		//this.handleEdit = this.handleEdit.bind(this);
 		this.onEdit = this.onEdit.bind(this);
@@ -61,6 +146,7 @@ class TodoListItem extends React.Component{
 		this.editList = this.editList.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.taskMenu = this.taskMenu.bind(this);
+		this.showTaskNote = this.showTaskNote.bind(this);
 	}
 
 	onDelete(e){
@@ -91,7 +177,7 @@ class TodoListItem extends React.Component{
 				toDoItem: "",
 				editTask: false,
 				showTaskMenu: false
-			})
+			});
 					
 			e.preventDefault();
 		}
@@ -102,11 +188,28 @@ class TodoListItem extends React.Component{
 				showTaskMenu: !this.state.showTaskMenu
 			});
 		}
+		taskCallBack(item, i){
+			this.props.handleTask(item, i);
+		}
+		showTaskNote(e){
+			e.preventDefault();
+			this.setState({
+				showTaskNote: !this.state.showTaskNote,
+				showTaskMenu: false
+			});
+		}
 	render(){
 		/*******************
 		FIX THIS LINES LATER | MAKE TASK MENU A CHILD COMPONENT??? 
 		********************/
 		let showTask;
+
+		const show = {
+			display: "flex",
+		}
+		const hide= {
+			display: "none",
+		}
 		console.log(this.state.toDoItem);
 		
 		if(this.props.active && this.state.showTaskMenu
@@ -142,19 +245,29 @@ class TodoListItem extends React.Component{
 						<li className="listItem" >
 							<div className="title">{this.props.title}</div>
 							<div className="btn">
-							<form>
-								<label><img src="images/calendar.png"/></label>
-							</form> {this.props.date} 
+								<form>
+									<label><i className="far fa-calendar-alt"></i></label>
+								</form> {this.props.date} 
 							
 								<a href="#" onClick={this.taskMenu} className="showTaskButton">
 								</a>
 								<div  style={showTask} className="taskMenu">
 									<Taskmenu deleteBtn={this.onDelete} 
-										editBtn={this.onEdit} />
+										editBtn={this.onEdit} 
+										showNoteBtn={this.showTaskNote}/>
 									
 								</div>
 							</div>
-							
+							<div className="taskNoteBg" style={ 
+								this.props.active && this.state.showTaskNote ? show : hide
+							 }>
+							<TaskNote 
+								taskNote={this.props.taskNote} 
+								showNoteBtn={this.showTaskNote}
+								handleTaskNote={this.taskCallBack.bind(this)}
+								oldId={this.props.oldId}
+							/>
+							</div>
 						</li>
 						
 					)
@@ -171,6 +284,9 @@ class TodoList extends React.Component{
 	editCallBack(item, i){
 		this.props.editItem(item, i);
 	}
+	taskCallBack(item, i){
+		this.props.handleTaskNote(item, i);
+	}
 
 	render(){
 		return(
@@ -178,15 +294,17 @@ class TodoList extends React.Component{
 			{
 				this.props.todoList.map( (item, idx) => 
 				<TodoListItem 
-				showTaskMenu={this.props.showTaskMenu}
-				idx={idx}
-				activeList={this.props.activeList}
-				active={idx === this.props.activeIdx}
-				title={item.title} 
-				date={item.date} 
-				deleteItem={this.deleteCallBack.bind(this)} 
-				editItem={this.editCallBack.bind(this)} 
-				oldId={item.id} />	
+					showTaskMenu={this.props.showTaskMenu}
+					idx={idx}
+					activeList={this.props.activeList}
+					active={idx === this.props.activeIdx}
+					title={item.title} 
+					date={item.date} 
+					taskNote={item.taskNote}
+					deleteItem={this.deleteCallBack.bind(this)} 
+					editItem={this.editCallBack.bind(this)} 
+					oldId={item.id}
+					handleTask={this.taskCallBack.bind(this)} />	
 				//<li>{item.title}</li>
 				)
 			}
@@ -202,12 +320,14 @@ class App extends React.Component{
 		this.state = {
 			toDoItems : [],
 			showTaskMenu: false,
-			activeIdx: -1
+			activeIdx: -1,
+			showTaskNote: false
 		}
 		this.handleEdit = this.handleEdit.bind(this);
 		this.handleDelete = this.handleDelete.bind(this);
 		this.addToDo = this.addToDo.bind(this);
 		this.activeList = this.activeList.bind(this);
+		this.handletaskNote = this.handletaskNote.bind(this);
 	}
 	componentDidMount(){
 			this.fetchComments();
@@ -279,9 +399,36 @@ class App extends React.Component{
 			      });
 		//console.log(listItem);
 	}
+	handletaskNote(task, oldId){
+		let list = [...this.state.toDoItems];
+		const toDo = {
+			taskNote: task,
+		
+		}
+		let listItem = list.map(item => {
+		//	console.log(title);
+			if(item.id === oldId ){
+				item.taskNote = task;
+			//	console.log(item.title);
+			}
+			return item;
+		});
+		this.setState({toDoItems: list,
+			      showTaskMenu: false
+			      });
+		//console.log(listItem);
+	}
 	activeList(idx){
 		this.setState({activeIdx: idx
 			      });
+	}
+	showTaskNote(id){
+		this.setState({showTaskNote: true});
+		/******************* 
+		 try to replicate the edit function
+		 so every added note will be added to
+		 correct task item.
+		 * ****************/
 	}
 	render(){
 		console.log(this.state.toDoItems);
@@ -298,9 +445,13 @@ class App extends React.Component{
 					<TodoList 
 						showTaskMenu={this.state.showTaskMenu} 
 						activeIdx={this.state.activeIdx} 
-						activeList={this.activeList}  todoList={this.state.toDoItems} 
+						activeList={this.activeList}  
+						todoList={this.state.toDoItems} 
 						editItem={this.handleEdit} 
-						deleteItem={this.handleDelete}/>
+						deleteItem={this.handleDelete}
+						handleTaskNote={this.handletaskNote}/>
+						
+					
 				</div>
 			</div>
 		)
