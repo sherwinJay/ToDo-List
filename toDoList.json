@@ -3,7 +3,8 @@
     "id": "1199",
     "title": "Liam's Birthday",
     "body": "August 8, Buy a Toy Truck.",
-    "priority": "High"
+    "priority": "High",
+    "taskNote": ""
     
   },
   {
@@ -11,16 +12,15 @@
     "title": "Buy Dog Food",
     "body": "Buy 5kg of dog food for Dwyane.",
     "priority": "Low",
-    "subtask": [
-      "Buy Dental Sticks",
-      "Buy Anti Flea Powder"
-    ]
+    "taskNote": "Buy 5kg of dog food for Dwyane, buy Dental Sticks."
+    
     
   },
   {
     "id": "3199",
     "title": "Team Building",
     "body": "3pm, Meeting Place is Laguna.",
-    "priority": "High"
+    "priority": "High",
+    "taskNote": ""
   }
 ]
