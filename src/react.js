@@ -101,7 +101,7 @@ class TaskNote extends React.Component{
 					:
 					(
 						<div onClick={this.addNote}>
-							{this.getTaskNoteLength(this.props.taskNote.length)}
+							{this.getTaskNoteLength(this.props.taskNote)}
 						</div>
 						
 					)
