@@ -51,7 +51,7 @@ class TaskNote extends React.Component{
 	}
 	getTaskNoteLength(taskNoteLength){
 		if(taskNoteLength.length === 0){
-			return	" Add Notes."
+			return	" Add Notes.";
 		}else{
 			return {taskNoteLength} ;
 		}
@@ -77,7 +77,8 @@ class TaskNote extends React.Component{
 			taskNote: value,
 		})
 	}
-	render(){
+	render(){ 
+		console.log(this.props.taskNote.length);
 		return(
 		<div className="taskNoteContainer">
 			
