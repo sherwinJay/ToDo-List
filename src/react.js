@@ -92,7 +92,14 @@ class TaskNote extends React.Component{
 					)
 					:
 					(
-						<div onClick={this.addNote}>{this.props.taskNote}</div>
+						<div onClick={this.addNote}>
+						if(this.props.taskNote.length === 0){
+							<p> Add Notes. </p>
+						}else{
+							{this.props.taskNote}
+						}
+		
+						</div>
 						
 					)
 				}
