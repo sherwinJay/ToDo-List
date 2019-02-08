@@ -47,8 +47,15 @@ class TaskNote extends React.Component{
 		this.addNote = this.addNote.bind(this);
 		this.inputNote = this.inputNote.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.getTaskNoteLength = this.getTaskNoteLength.bind(this);
 	}
-	
+	getTaskNoteLength(taskNoteLength){
+		if(taskNoteLength === 0){
+			<p> Add Notes. </p>
+		}else{
+			<div>{taskNoteLength}</div>
+		}
+	}
 	addNote(e){
 		//const addNote = this.state.taskNote;
 
@@ -93,13 +100,7 @@ class TaskNote extends React.Component{
 					:
 					(
 						<div onClick={this.addNote}>
-						{
-							if(this.props.taskNote.length === 0){
-								<p> Add Notes. </p>
-							}else{
-								<div>{this.props.taskNote}</div>
-							}
-						}
+							this.getTaskNoteLength(this.props.taskNote)
 						</div>
 						
 					)
