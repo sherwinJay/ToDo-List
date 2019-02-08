@@ -96,7 +96,7 @@ class TaskNote extends React.Component{
 						if(this.props.taskNote.length === 0){
 							<p> Add Notes. </p>
 						}else{
-							{this.props.taskNote}
+							<div>{this.props.taskNote}</div>
 						}
 		
 						</div>
