@@ -50,7 +50,7 @@ class TaskNote extends React.Component{
 		this.getTaskNoteLength = this.getTaskNoteLength.bind(this);
 	}
 	getTaskNoteLength(taskNoteLength){
-		if(taskNoteLength.length === 0){
+		if(taskNoteLength === 0){
 			<p> Add Notes. </p>
 		}else{
 			<div>{taskNoteLength}</div>
@@ -100,7 +100,7 @@ class TaskNote extends React.Component{
 					:
 					(
 						<div onClick={this.addNote}>
-							{this.getTaskNoteLength(this.props.taskNote)}
+							{this.getTaskNoteLength(this.props.taskNote.length)}
 						</div>
 						
 					)
