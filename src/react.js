@@ -1,3 +1,29 @@
+const AddListForm = (props) => {
+	const [toDoItem, setToDoItem] = useState("");
+return(
+	<form onSubmit={this.handleSubmit}>
+		<input type="text" 
+			value={this.state.toDoItem} 
+			onChange={this.addToDo}/>
+		<button>Submit</button>
+	</form>
+);
+	addToDo(e){
+		setToDoItem({
+			toDoItem: e.target.value
+		})
+	}
+	handleSubmit(e){
+		props.addNew(toDoItem);
+
+		setToDoItem({
+			toDoItem: ""
+		})
+		e.preventDefault();
+		//alert(this.state.toDoItem);
+	}
+}
+/**
 class AddListForm extends React.Component{
 	constructor(props){
 		super(props);
@@ -35,7 +61,7 @@ class AddListForm extends React.Component{
 	}
 
 }
-
+**/
 class TaskNote extends React.Component{
 	constructor(props){
 		super(props);
