@@ -425,5 +425,116 @@ class MovieApp extends React.Component{
 	}
 }
 //Handle React Routes
+/**
+<!DOCTYPE html>
+<html>
+<head>
+	<title>React Practice</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+		<div class="game-logo">
+        <a class="game-provider activeProvider" id="playtech" href="index.html" onclick="activeGameProvider('playtech')">Playtech</a>
+        <a class="game-provider" id="microgaming" href="about.html" onclick="activeGameProvider('microgaming')">Microgaming</a>
+       
+      </div>
+	<div class="col-md-3 game-slot-container all-games slots game-top slots" data-category="slots">
+		<div class="game-slot-overlay-container">
+		   <p>横财神</p>
+		   <div class="game_favorite">
+			  FAVORITE<button class="fav-button" onclick="favorite(this)" data-name="灌篮大师" data-image="http://gamegateway.t1t.games/includes/images/dt/sd.png" alt="灌篮大师" data-url="/iframe_module/goto_t1games/1023/sd/real"></button>
+		   </div>
+		   <div class="game-slot-buttons">
+			  <a href="http://player.staging.onestop.t1t.in/player_center/goto_goldenf_pgsoft/857/fortune-gods/real" target="_blank" class="playnow">开始游戏</a>
+			  <a href="http://player.staging.onestop.t1t.in/player_center/goto_goldenf_pgsoft/857/fortune-gods/fun" target="_blank" class="trial">免费试玩</a>
+		   </div>
+		</div>
+		<a>
+		<img class="game-img" src="http://gamegateway.t1t.games/includes/images/cn/microgaming/RubyThousandIslands.jpg" onerror="this.onerror=null;this.src='https://www.gamegateway.t1t.games/cdn/error.jpg';">
+		</a>
+	 </div>
+	 <div class="button-container">
+			   <button class="cn-btn active-btn" onclick="cnBtn()">
+				   CN
+				   </button>
+				   <button class="en-btn" onclick="enBtn()">
+				   EN
+			   </button>
+		   </div>
+		   
+		<script>
+		   
+	  //Global Variables 
+		 
+		let gameContainer = document.querySelectorAll("img.game-img");
+		let gameProvider =  document.querySelectorAll("a.game-provider");
+		 
+		//CHANGE IMAGE PATH	 
+	  function changeImgSrc( path ){
+
+		//get "/images/" path for dynamic reference of img src 
+		let imgPath = "/images/",
+				imgPathIdxPos = gameContainer[0].currentSrc.indexOf(imgPath),
+				addIdxPos = imgPathIdxPos + imgPath.length;
+	
+			return [...gameContainer].forEach( idx => {			
+				if(idx.src.match(/\/cn/i) ){
+					
+					//delete "cn/" 
+					idx.src = idx.src.slice(0, addIdxPos) + path + idx.src.slice(addIdxPos + 3);
+				}else if( idx.src === "https://www.gamegateway.t1t.games/cdn/error.jpg" ){
+					idx.src = idx.src;
+				}else{
+					idx.src = idx.src.slice(0, (addIdxPos - 1)) + path + idx.src.slice(addIdxPos);
+				}       
+			});
+		 
+		}
+	 
+		//create en / cn button function
+
+		function enBtn(){
+		  if($(".en-btn").hasClass("active-btn")){
+			return;
+		  }else{
+				$(".active-btn").removeClass("active-btn");
+				$(".en-btn").addClass("active-btn");
+				return changeImgSrc( "" );
+		   }
+		 }
+		 function cnBtn(){
+		  if($(".cn-btn").hasClass("active-btn")){
+			  return;
+		  }else{
+				$(".active-btn").removeClass("active-btn");
+				$(".cn-btn").addClass("active-btn");
+				return changeImgSrc("/cn/");
+		   }
+		 }
+	 
+		 // FOR ACTIVE GAME PROVIDER
+		function activeGameProvider(gameProviders){
+			let el = document.getElementById(gameProviders);
+			
+			//iterate game-provider to add and remove the activeProvider class.
+
+			[...gameProvider].forEach(idx => {
+				idx.className = idx.className.replace(/\bactiveProvider\b/g, "");
+				el.classList.add("activeProvider");
+			});
+		
+		}
+
+		</script>
+			 
+</body>
+</html>
+
+**/
 
 ReactDOM.render(<MovieApp  />, document.getElementById("main"), console.timeEnd("app"));
